@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {
@@ -14,19 +15,23 @@ class SettingPage extends StatelessWidget {
       ),
       body: Column(children: [
         ListTile(
-          title: Text('Different weather?'),
-          trailing: Icon(Icons.arrow_forward_ios_rounded),
-          shape: UnderlineInputBorder(),
+          title: const Text('Different weather?'),
+          trailing: const Icon(Icons.arrow_forward_ios_rounded),
+          shape: const UnderlineInputBorder(),
           onTap: () {
-            print('different weather');
+            if (kDebugMode) {
+              print('different weather');
+            }
           },
         ),
         ListTile(
-          title: Text('Customize units'),
-          trailing: Icon(Icons.arrow_forward_ios_rounded),
-          shape: UnderlineInputBorder(),
+          title: const Text('Customize units'),
+          trailing: const Icon(Icons.arrow_forward_ios_rounded),
+          shape: const UnderlineInputBorder(),
           onTap: () {
-            print('units');
+            if (kDebugMode) {
+              print('units');
+            }
           },
         ),
         const ListTile(

@@ -11,22 +11,25 @@ import 'package:weather_app/widgets/hourly_forecast.dart';
 import 'package:weather_app/widgets/loading.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final double lat;
+  final double long;
 
+  const HomePage({super.key, required this.lat, required this.long});
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  double lat = -6.3687594;
-  double long = 106.8624118;
+  // double lat = -6.3687594;
+  // double long = 106.8624118;
+
   Future<WeatherModel>? _weather;
   Future<List<WeatherModel>>? _forecast;
 
   @override
   void initState() {
-    _weather = DataRequest().getWeather(lat, long);
-    _forecast = DataRequest().getForecast(lat, long);
+    _weather = DataRequest().getWeather(widget.lat, widget.long);
+    _forecast = DataRequest().getForecast(widget.lat, widget.long);
     super.initState();
   }
 
@@ -37,10 +40,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.search_rounded),
+            icon: const Icon(Icons.search_rounded),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchPage()));
+                  MaterialPageRoute(builder: (context) => const SearchPage()));
             },
           ),
           title: Row(
@@ -48,10 +51,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Text('WeatherApp'),
               IconButton(
-                  icon: Icon(Icons.settings_rounded),
+                  icon: const Icon(Icons.settings_rounded),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SettingPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingPage()));
                   })
             ],
           )),

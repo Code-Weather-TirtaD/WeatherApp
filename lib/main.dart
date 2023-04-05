@@ -7,13 +7,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  final double initLat = 0.0;
+  final double initLong = 0.0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: HomePage(),
+      home: HomePage(lat: initLat, long: initLong),
       debugShowCheckedModeBanner: false,
     );
   }

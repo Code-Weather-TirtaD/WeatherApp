@@ -21,13 +21,13 @@ class HourlyForecast extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: data.length,
+        itemCount: data.length < 15 ? data.length : 15,
         itemBuilder: (context, index) {
           var icon = '$iconUrl${data[index].weatherIcon}@2x.png';
           var timestamp =
               DateTime.fromMillisecondsSinceEpoch(data[index].dt * 1000);
           var date = DateFormat.MMMd('en_US').format(timestamp);
-          var time = DateFormat.jm().format(timestamp);
+          var time = DateFormat.Hm().format(timestamp);
 
           return SizedBox(
             width: 100,
@@ -35,7 +35,7 @@ class HourlyForecast extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(time == '7:00 AM' ? date : time),
+                  Text(time == '01:00' ? date : time),
                   ImageIcon(NetworkImage(icon), size: 50),
                   Text("${data[index].temparatureMax.round()} \u2103"),
                 ],
